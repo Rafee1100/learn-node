@@ -1,12 +1,13 @@
 /**
  * title: Uptime Monitoring Application
  * Description: A RESTFul API to monitor up or downtime user defined links
- * Author:Rafee
+ * Author:Abdullah Al Rafee
  */
 
-const http = require("http");
+// Dependencies
 const url = require("url");
-
+const http = require("http");
+const { handleReqRes } = require("./helpers/handleReqRes");
 // app object= module scaffolding
 const app = {};
 
@@ -23,20 +24,7 @@ app.createServer = () => {
     console.log(`Listening to ${app.config.port}`);
   });
 };
-
+app.handleReqRes = handleReqRes;
 //handle Request Response
-app.handleReqRes = (req, res) => {
-  //request handling
-  //get that url and parse it
-  const parsedUrl = url.parse(req.url, true);
-  const path = parsedUrl.pathname;
-  const trimmedPath = path.replace(/^\/+|\?+$/g, "");
-  const method = req.method.toLowerCase()
-  const queryString = parsedUrl.query
-  const headers = req.headers
-  console.log(headers)
-  //response handle
-  res.end("Hello World");
-};
 
 app.createServer();
